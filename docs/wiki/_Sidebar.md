@@ -8,7 +8,6 @@
 - [[Budgets]]
 
 ### Interfaces
-- [[Interfaces]]
 
 <details><summary><b>Mechanical</b></summary>
 
