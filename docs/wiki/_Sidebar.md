@@ -1,9 +1,14 @@
 ### Navigation
 - [[Home]]
-- [[Competitions]]
 - [[Plex Overview]]
+- [[Competitions]]
+
+### Reference
+- [[Glossary]]
+- [[Budgets]]
 
 ### Interfaces
+- [[Interfaces]]
 
 <details><summary><b>Mechanical</b></summary>
 
