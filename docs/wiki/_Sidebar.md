@@ -1,6 +1,26 @@
 ### Navigation
 - [[Home]]
 - [[Competitions]]
-- [[Plex-Overview]]
+- [[Plex Overview]]
 
-**Mechanical Electrical Science Software Admin**
+### Interfaces
+- [[Mechanical to Electrical Interface]]
+- [[Mechanical to Science Interface]]
+- [[Mechanical to Software Interface]]
+- [[Mechanical to Admin Interface]]
+- [[Electrical to Mechanical Interface]]
+- [[Electrical to Science Interface]]
+- [[Electrical to Software Interface]]
+- [[Electrical to Admin Interface]]
+- [[Science to Mechanical Interface]]
+- [[Science to Electrical Interface]]
+- [[Science to Software Interface]]
+- [[Science to Admin Interface]]
+- [[Software to Mechanical Interface]]
+- [[Software to Electrical Interface]]
+- [[Software to Science Interface]]
+- [[Software to Admin Interface]]
+- [[Admin to Mechanical Interface]]
+- [[Admin to Electrical Interface]]
+- [[Admin to Science Interface]]
+- [[Admin to Software Interface]]
