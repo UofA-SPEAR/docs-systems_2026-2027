@@ -1,0 +1,7 @@
+# Python packages for generating documentation visuals
+# Install with: pip install -r requirements.txt
+
+pandas>=2.0        # read and organize data from CSV files
+matplotlib>=3.8    # charts and grid visuals (budgets, N² diagrams, test data)
+graphviz>=0.20     # generate block and architecture diagrams from Python
+pyyaml>=6.0        # read structured data from YAML files
