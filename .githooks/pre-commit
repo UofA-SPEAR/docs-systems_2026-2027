@@ -1,0 +1,24 @@
+#!/bin/sh
+# Before each commit: regenerate images for any data/<folder> with staged changes,
+# and stage the results in docs/graphs/<folder>/.
+#   .puml -> PlantUML   .dot -> Graphviz   .py -> run with the output folder as its first argument
+set -e
+root=$(git rev-parse --show-toplevel)
+cd "$root"
+
+folders=$(git diff --cached --name-only --diff-filter=ACMR -- data/ | xargs -n1 dirname 2>/dev/null | sort -u)
+[ -n "$folders" ] || exit 0
+
+for src in $folders; do
+  out="docs/graphs/${src#data/}"
+  mkdir -p "$out"
+  echo "Generating $out"
+  for f in "$src"/*; do
+    case "$f" in
+      *.puml) plantuml -tpng -o "$root/$out" "$f" ;;
+      *.dot)  dot -Tpng "$f" -o "$out/$(basename "${f%.*}").png" ;;
+      *.py)   python3 "$f" "$out" ;;
+    esac
+  done
+  git add "$out"
+done
