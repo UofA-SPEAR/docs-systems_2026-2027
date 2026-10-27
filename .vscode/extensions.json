@@ -1,8 +1,9 @@
 {
     "recommendations": [
         "jebbs.plantuml",
-        "tintinweb.graphviz-interactive-preview"
-        
+        "tintinweb.graphviz-interactive-preview",
+        "ms-python.python",
+        "yzhang.markdown-all-in-one",
+        "timonwong.shellcheck"
     ]
 }
-

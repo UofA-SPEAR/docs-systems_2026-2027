@@ -1,5 +1,12 @@
 # Systems Documentation
 
+
+## Set Up
+
+```bash
+./setup.sh
+```
+
 ## Wiki
 
 Pages in `docs/wiki/` are published to this repo's Wiki tab automatically on every push to `main`.
