@@ -1,0 +1,11 @@
+#!/bin/sh
+# Publishes docs/wiki/ to the GitHub wiki whenever you push main to origin.
+[ "$1" = "origin" ] || exit 0
+while read local_ref local_sha remote_ref remote_sha; do
+  if [ "$remote_ref" = "refs/heads/main" ]; then
+    echo "Updating wiki..."
+    split=$(git subtree split --prefix docs/wiki "$local_sha" 2>/dev/null) || exit 0
+    git push --no-verify -f wiki "$split:refs/heads/master" || echo "Wiki update failed (your push still went through)."
+  fi
+done
+exit 0
