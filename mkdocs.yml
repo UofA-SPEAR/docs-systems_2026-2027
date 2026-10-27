@@ -1,6 +1,0 @@
-site_name: Systems Documentation 2026–2027
-docs_dir: docs/wiki
-theme:
-  name: material
-nav:
-  - Home: index.md
