@@ -3,6 +3,9 @@
 - [[Plex Overview]]
 - [[Competitions]]
 
+### Models
+- [[N2]]
+
 ### Reference
 - [[Glossary]]
 - [[Budgets]]
