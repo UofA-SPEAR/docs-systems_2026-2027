@@ -1,0 +1,10 @@
+{
+    // run files from their own folder when using the Run button,
+    // so relative paths like specs.csv are found and outputs
+    // (n2_diagram.html, N2_out) are saved next to the file
+    "python.terminal.executeInFileDir": true,
+
+    // use the Python in .venv (has openmdao and tabulate installed)
+    // instead of the system Python
+    "python.defaultInterpreterPath": "${workspaceFolder}/.venv/bin/python"
+}

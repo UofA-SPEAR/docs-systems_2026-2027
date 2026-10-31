@@ -24,6 +24,7 @@ Last Modified: Oct 31
 import openmdao.api as om
 import csv
 import os
+from tabulate import tabulate
 
 from mechanical import Mechanical
 from science import Science
@@ -180,26 +181,42 @@ def load_specs(p, filename=os.path.join(os.path.dirname(__file__), 'specs.csv'))
 
 def display_summary(p):
     """
-    Prints the total and what's left for each budget.
+    Prints a table of each budget's total, what's left, and whether it's
+    good or bad, then explains what the values mean.
  
     @param p: the rover model
     @note: call after p.run_model()
     """
-    print('Total mass:   ', p.get_val('mass_budget.total_mass'), 'kg')
-    print('Mass left:    ', p.get_val('mass_budget.mass_left'), 'kg')
+    rows = [
+        ['Mass',    'kg',   p.get_val('mass_budget.total_mass')[0],    p.get_val('mass_budget.mass_left')[0]],
+        ['Power',   'W',    p.get_val('power_budget.total_power')[0],  p.get_val('power_budget.power_left')[0]],
+        ['Storage', 'MB/s', p.get_val('storage_budget.total_MBps')[0], None],
+        ['GPU',     '%',    p.get_val('compute_budget.gpu_total')[0],  p.get_val('compute_budget.gpu_left')[0]],
+        ['CPU',     '%',    p.get_val('compute_budget.cpu_total')[0],  p.get_val('compute_budget.cpu_left')[0]],
+        ['RAM',     'GB',   p.get_val('compute_budget.ram_total')[0],  p.get_val('compute_budget.ram_left')[0]],
+        ['Network', 'Mbps', p.get_val('network_budget.total_Mbps')[0], p.get_val('network_budget.bw_left')[0]],
+    ]
 
-    print('Total power:  ', p.get_val('power_budget.total_power'), 'W')
-    print('Power left:   ', p.get_val('power_budget.power_left'), 'W')
+    for row in rows:
+        left = row[3]
+        row.append('no limit' if left is None else 'GOOD' if left >= 0 else 'BAD - over limit')
 
-    print('Total storage:', p.get_val('storage_budget.total_MBps'), 'MB/s')
+    print(tabulate(rows, headers=['Budget', 'Units', 'Total', 'Left', 'Status'],
+                   floatfmt='.2f', missingval='-'))
 
-    print('GPU left:     ', p.get_val('compute_budget.gpu_left'), '%')
-    print('CPU left:     ', p.get_val('compute_budget.cpu_left'), '%')
-    print('RAM left:     ', p.get_val('compute_budget.ram_left'), 'GB')
-
-    print('Total network:', p.get_val('network_budget.total_Mbps'), 'Mbps')
-    print('Network left: ', p.get_val('network_budget.bw_left'), 'Mbps')
-
+    print()
+    print('Total = what everything on the rover uses')
+    print('Left  = limit - total')
+    print('  GOOD: left is 0 or more, under the limit (left is the spare)')
+    print('  BAD:  left is negative, over the limit by that much')
+    print()
+    print('Mass:    total weight vs the max weight allowed')
+    print('Power:   power drawn at once vs what the battery can supply')
+    print('Storage: how fast data is written to disk (no limit set)')
+    print('GPU/CPU: % of the jetson used, vs the limit (headroom)')
+    print('RAM:     memory used vs the jetson memory')
+    print('Network: data sent to base vs the link speed')
+    
 # ========================================================================
 # Running Model
 #
