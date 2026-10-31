@@ -39,9 +39,12 @@ class Mechanical(om.Group):
         self.add_subsystem('arm', Arm())
 
         total = om.AddSubtractComp()
-        total.add_equation('mass', input_names=[''])
+        total.add_equation('mass', input_names=['m_chassis', 'm_drive', 'm_arm'], units='kg')
+        self.add_subsystem('total', total)
 
-    self.connect('chassis.mass', )
+        self.connect('chassis.total.mass', 'total.m_chassis')
+        self.connect('drive.total.mass', 'total.m_drive')
+        self.connect('arm.total.mass', 'total.m_arm')
 
 # ========================================================================
 # Drive
@@ -63,11 +66,13 @@ class Drive(om.Group):
             bogie_mass={'val':-0.0, 'units': 'kg'},
             mass={'units': 'kg'}
         ))
+
         self.add_subsystem('wheels', om.ExecComp(
             'mass = n_wheels * wheel_mass',
             wheel_mass={'val':-0.0, 'units': 'kg'},
             mass={'units': 'kg'}
         ), promotes_inputs=['n_wheels'])
+
         self.add_subsystem('drive_motors', om.ExecComp(
             ['mass = n_wheels * motor_mass',
             'power = n_wheels * motor_power'],
@@ -77,13 +82,13 @@ class Drive(om.Group):
             power={'units': 'W'}
         ), promotes_inputs=['n_wheels'])
 
-    drive_total = om.AddSubtractComp()
-    drive_total.add_equation('mass', input_names=['m_rb', 'm_wheels', 'm_motors'], units= 'kg')
-    self.add_subsystem('drive_total', drive_total)
+    total = om.AddSubtractComp()
+    total.add_equation('mass', input_names=['m_rb', 'm_wheels', 'm_motors'], units= 'kg')
+    self.add_subsystem('total', total)
 
-    self.connect('rocker_bogie.mass', 'drive_total.m_rb')
-    self.connect('wheels.mass', 'drive_total.m_wheels')
-    self.connect('drive_motors.mass', 'drive_total.m_motors')
+    self.connect('rocker_bogie.mass', 'total.m_rb')
+    self.connect('wheels.mass', 'total.m_wheels')
+    self.connect('drive_motors.mass', 'total.m_motors')
 
 # ========================================================================
 # Chassis
