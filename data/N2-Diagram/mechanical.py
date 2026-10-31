@@ -17,11 +17,17 @@ class Mechanical(om.Group):
 
         total = om.AddSubtractComp()
         total.add_equation('mass', input_names=['m_chassis', 'm_drive', 'm_arm'], units='kg')
+        total.add_equation('elec_power', input_names=['p_chassis', 'p_drive', 'p_arm'], units='W')
+        total.add_equation('data_MBps', input_names=['d_chassis', 'd_drive', 'd_arm'])
+        total.add_equation('net_Mbps', input_names=['n_chassis', 'n_drive', 'n_arm'])
+        total.add_equation('gpu_pct', input_names=['gpu_chassis', 'gpu_drive', 'gpu_arm'])
+        total.add_equation('cpu_pct', input_names=['cpu_chassis', 'cpu_drive', 'cpu_arm'])
+        total.add_equation('ram_GB', input_names=['ram_chassis', 'ram_drive', 'ram_arm'])
         self.add_subsystem('total', total)
 
         self.connect('chassis.total.mass', 'total.m_chassis')
         self.connect('drive.total.mass', 'total.m_drive')
-        self.connect('arm.total.mass', 'total.m_arm')
+        self.connect('drive.drive_motors.elec_power', 'total.p_drive')
 
 # ========================================================================
 # Drive
@@ -110,5 +116,6 @@ class Chassis(om.Group):
 # 
 # ========================================================================
 class Arm(om.Group):
-    def setup(self):
-        self.add_subsystem()
+    pass
+    # def setup(self):
+    #     self.add_subsystem()
