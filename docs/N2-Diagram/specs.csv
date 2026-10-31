@@ -1,0 +1,63 @@
+path,value,units,owner,source
+electrical.battery.battery_mass,-0.0,kg,Electrical,
+electrical.battery.charge,-0.0,A*h,Electrical,
+electrical.battery.max_current,-0.0,A,Electrical,
+electrical.battery.voltage,48,V,Electrical,team: 48 V pack (use nominal V from datasheet)
+mechanical.chassis.camera_mounts.mount_mass,-0.0,kg,Mechanical,
+mechanical.chassis.chassis.chassis_mass,-0.0,kg,Mechanical,
+mechanical.chassis.electrical_box.box_mass,-0.0,kg,Mechanical,
+mechanical.drive.drive_motors.motor_mass,-0.0,kg,Mechanical,
+mechanical.drive.drive_motors.motor_power,-0.0,W,Mechanical,
+mechanical.drive.n_wheels,6,,Mechanical,design: 6-wheel rocker-bogie
+mechanical.drive.rocker_bogie.bogie_mass,-0.0,kg,Mechanical,
+mechanical.drive.rocker_bogie.rocker_mass,-0.0,kg,Mechanical,
+mechanical.drive.wheels.wheel_mass,-0.0,kg,Mechanical,
+compute_budget.cpu_arm,-0.0,,Software,
+compute_budget.cpu_nav,-0.0,,Software,
+compute_budget.cpu_vision,-0.0,,Software,
+compute_budget.gpu_arm,-0.0,,Software,
+compute_budget.gpu_nav,-0.0,,Software,
+compute_budget.gpu_vision,-0.0,,Software,
+compute_budget.ram_arm,-0.0,,Software,
+compute_budget.ram_nav,-0.0,,Software,
+compute_budget.ram_vision,-0.0,,Software,
+network_budget.telem_Mbps,-0.0,,Software,
+network_budget.video_other_Mbps,-0.0,,Software,
+software.cameras.ZED_X_Mini_Stereo.cam_mass,0.150,kg,Software,Stereolabs: https://www.stereolabs.com/en-ma/3dmodels
+software.cameras.ZED_X_Mini_Stereo.cam_power,-0.0,W,Software,not published by Stereolabs - measure or ask support
+software.cameras.ZED_X_Mini_Stereo.record_MBps,-0.0,,Software,
+software.cameras.ZED_X_Mini_Stereo.stream_Mbps,-0.0,,Software,
+software.cameras.ZED_X_One_GS.cam_mass,0.055,kg,Software,"Stereolabs, 2.2 mm lens: https://www.stereolabs.com/en-ma/3dmodels"
+software.cameras.ZED_X_One_GS.cam_power,0.73,W,Software,ZED X One datasheet (typical): https://www.mouser.lt/datasheet/3/6026/1/ZED_X_One_Datasheet_v2.pdf
+software.cameras.ZED_X_One_GS.record_MBps,-0.0,,Software,
+software.cameras.ZED_X_One_GS.stream_Mbps,-0.0,,Software,
+software.cameras.ZED_X_Stereo.cam_mass,0.240,kg,Software,Stereolabs: https://www.stereolabs.com/en-ma/3dmodels
+software.cameras.ZED_X_Stereo.cam_power,-0.0,W,Software,not published by Stereolabs - measure or ask support
+software.cameras.ZED_X_Stereo.record_MBps,-0.0,,Software,
+software.cameras.ZED_X_Stereo.stream_Mbps,-0.0,,Software,
+software.cameras.infrared.cam_mass,-0.0,kg,Software,
+software.cameras.infrared.cam_power,-0.0,W,Software,
+software.cameras.infrared.record_MBps,-0.0,,Software,
+software.cameras.infrared.stream_Mbps,-0.0,,Software,
+software.cameras.num_ZED_X_One_GS,6,,Software,design
+software.jetson_orin_agx.emmc_GB,64,,Software,NVIDIA AGX Orin datasheet DS-10662
+software.jetson_orin_agx.jetson_mass,0.872,kg,Software,"NVIDIA forum, user-reported dev kit w/ case - weigh yours"
+software.jetson_orin_agx.jetson_power,60,W,Software,"NVIDIA AGX Orin datasheet DS-10662 (max module power, excludes peripherals)"
+software.jetson_orin_agx.os_GB,-0.0,,Software,
+software.jetson_orin_agx.ram_GB,64,,Software,NVIDIA AGX Orin datasheet DS-10662 (64GB version)
+software.jetson_orin_agx.ssd_GB,-0.0,,Software,
+software.radios.heltec_radio.lora_Mbps,-0.0,,Software,
+software.radios.heltec_radio.radio_mass,-0.0,kg,Software,
+software.radios.heltec_radio.radio_power,-0.0,W,Software,
+software.radios.video_radio.radio_mass,-0.0,kg,Software,
+software.radios.video_radio.radio_power,-0.0,W,Software,
+software.radios.video_radio.video_link_Mbps,-0.0,,Software,
+storage_budget.log_MBps,-0.0,,Software,
+compute_budget.cpu_limit,80,,Systems,design choice: 20% headroom
+compute_budget.gpu_limit,80,,Systems,design choice: 20% headroom
+ethercat.cmd_bytes,-0.0,,Systems,
+ethercat.cycle_hz,-0.0,,Systems,
+ethercat.fb_bytes,-0.0,,Systems,
+ethercat.link_bps,100e6,,Systems,EtherCAT standard: 100 Mbps
+ethercat.overhead_bytes,-0.0,,Systems,
+mass_budget.max_mass,50,kg,Systems,MAX_WEIGHT - confirm with competition rules
