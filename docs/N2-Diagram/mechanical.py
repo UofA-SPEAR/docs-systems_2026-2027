@@ -39,22 +39,22 @@ class Drive(om.Group):
         
         self.add_subsystem('rocker_bogie', om.ExecComp(
             'mass = 2 * (rocker_mass + bogie_mass)',
-            rocker_mass={'val':-0.0, 'units': 'kg'},
-            bogie_mass={'val':-0.0, 'units': 'kg'},
+            rocker_mass={'units': 'kg'},
+            bogie_mass={'units': 'kg'},
             mass={'units': 'kg'}
         ))
 
         self.add_subsystem('wheels', om.ExecComp(
             'mass = n_wheels * wheel_mass',
-            wheel_mass={'val':-0.0, 'units': 'kg'},
+            wheel_mass={'units': 'kg'},
             mass={'units': 'kg'}
         ), promotes_inputs=['n_wheels'])
 
         self.add_subsystem('drive_motors', om.ExecComp(
             ['mass = n_wheels * motor_mass',
             'elec_power = n_wheels * motor_power'],
-            motor_mass={'val':-0.0, 'units': 'kg'},
-            motor_power={'val':-0.0, 'units': 'W'},
+            motor_mass={'units': 'kg'},
+            motor_power={'units': 'W'},
             mass={'units': 'kg'},
             elec_power={'units': 'W'}
         ), promotes_inputs=['n_wheels'])
@@ -81,19 +81,19 @@ class Chassis(om.Group):
         self.add_subsystem('chassis', om.ExecComp(
             # ensure it is a formula, no change
             'mass = 1.0 * chassis_mass',
-            chassis_mass={'val':-0.0, 'units': 'kg'},
+            chassis_mass={'units': 'kg'},
             mass={'units': 'kg'}
         ))
 
         self.add_subsystem('electrical_box', om.ExecComp(
             'mass = 1.0 * box_mass',
-            box_mass={'val':-0.0, 'units': 'kg'},
+            box_mass={'units': 'kg'},
             mass={'units': 'kg'}
         ))
 
         self.add_subsystem('camera_mounts', om.ExecComp(
             'mass = 1.0 * mount_mass',
-            mount_mass={'val':-0.0, 'units': 'kg'},
+            mount_mass={'units': 'kg'},
             mass={'units': 'kg'}
         ))
 
