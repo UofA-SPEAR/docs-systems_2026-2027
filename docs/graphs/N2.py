@@ -82,18 +82,19 @@ class Drive(om.Group):
             power={'units': 'W'}
         ), promotes_inputs=['n_wheels'])
 
-    total = om.AddSubtractComp()
-    total.add_equation('mass', input_names=['m_rb', 'm_wheels', 'm_motors'], units= 'kg')
-    self.add_subsystem('total', total)
+        total = om.AddSubtractComp()
+        total.add_equation('mass', input_names=['m_rb', 'm_wheels', 'm_motors'], units= 'kg')
+        self.add_subsystem('total', total)
 
-    self.connect('rocker_bogie.mass', 'total.m_rb')
-    self.connect('wheels.mass', 'total.m_wheels')
-    self.connect('drive_motors.mass', 'total.m_motors')
+        self.connect('rocker_bogie.mass', 'total.m_rb')
+        self.connect('wheels.mass', 'total.m_wheels')
+        self.connect('drive_motors.mass', 'total.m_motors')
 
 # ========================================================================
 # Chassis
 #
 # Component:
+#   - Chassis
 #   - Electrical Box
 #   - Camera Mounts
 # ========================================================================
@@ -106,6 +107,26 @@ class Chassis(om.Group):
             chassis_mass={'val':-0.0, 'units': 'kg'},
             mass={'units': 'kg'}
         ))
+
+        self.add_subsystem('electrical_box', om.ExecComp(
+            'mass = 1.0 * box_mass',
+            box_mass={'val':-0.0, 'units': 'kg'},
+            mass={'units': 'kg'}
+        ))
+
+        self.add_subsystem('camera_mounts', om.ExecComp(
+            'mass = 1.0 * mount_mass',
+            mount_mass={'val':-0.0, 'units': 'kg'},
+            mass={'units': 'kg'}
+        ))
+
+        total = om.AddSubtractComp()
+        total.add_equation('mass', input_names=['m_chassis', 'm_box', 'm_mounts'], units= 'kg')
+        self.add_subsystem('total', total)
+
+        self.connect('chassis.mass', 'total.m_chassis')
+        self.connect('electrical_box.mass', 'total.m_box')
+        self.connect('camera_mounts.mass', 'total.m_mounts')
 
 # ========================================================================
 # Arm
